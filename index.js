@@ -6,13 +6,15 @@ for (var i = 0; i < len; i++) {
         var buttunInnerHTML = this.innerHTML; // this.innerHTML take the all buttun save into the variable.
 
         makingSound(buttunInnerHTML);
+        buttonAnimation(buttunInnerHTML);
+        
 
     })
 
 }
 
 
-document.addEventListener("keypress", function (event) { 
+document.addEventListener("keypress", function (event) {
     //event keyword display the Property of the keys and event.key keyword is used to display Which key word you press. 
 
     makingSound(event.key);//combine these two make the full functional website keypress music and etc.
@@ -20,11 +22,12 @@ document.addEventListener("keypress", function (event) {
     console.log(event) // display the property of the keys.
 
     console.log(event.key); //display the key.
+    
+    buttonAnimation(event.key);
 })
 
-
 function makingSound(key) {
-//detect the keys.
+    //detect the keys.
 
     switch (key) {
         case "w":
@@ -56,7 +59,21 @@ function makingSound(key) {
             kick.play();
             break;
         default:
-            console.log("Sorry You Enter The Wrong Key !")
-            break; 
+            console.log(innerHTML);
+            break;
     }
 }
+
+
+
+function buttonAnimation(currentKey) {
+
+    var activeButton = document.querySelector("." + currentKey);
+  
+    activeButton.classList.add("pressed");
+  
+    setTimeout(function() {
+      activeButton.classList.remove("pressed");
+    }, 100);
+  
+  }
